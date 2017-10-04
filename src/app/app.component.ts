@@ -8,7 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Tour fo Heroes'
-  hero  = 'Windstorm'
+  hero: Hero = {
+    id: 1,
+    name: 'Windstorm'
+  }
 }
 
 // heroにpropertiesを追加。
