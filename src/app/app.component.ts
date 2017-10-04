@@ -55,9 +55,16 @@ import { Component } from '@angular/core';
   `],
   template: `
     <h1>{{title}}</h1>
-    <h2>My Heroes</h2>
+    <div *ngIf="selectedHero">
+      <h2>{{selectedHero.name}} details!</h2>
+      <div><label>id: </label>{{selectedHero.id}}</div>
+      <div>
+        <label>name: </label>
+        <input [(ngModel)]="selectedHero.name" placeholder="name"/>
+      </div>
+    </div>
     <ul class="heroes">
-      <li *ngFor="let hero of heroes">
+      <li *ngFor="let hero of heroes" (click)="onSelect(hero)">
         <span class="badge">{{hero.id}}</span> {{hero.name}}
       </li>
     </ul>
@@ -72,7 +79,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Tour fo Heroes'
-  heroes = HEROES
+  heroes = HEROES;
+  selectedHero: Hero; // どのヒーローを選択中かを格納する
+
+  // selectedHeroにclickしたhero objectを代入
+  onSelect(hero: Hero): void {
+    this.selectedHero = hero;
+  }
 }
 
 // heroにpropertiesを追加。
